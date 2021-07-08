@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="coin_detail"
+            type="com.companyname.kotlinpractice.CoinDetail" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".CoinInfoFragment">
+
+        <TextView
+            android:id="@+id/symbol"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/symbol"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_symbol"
+            app:layout_constraintTop_toTopOf="@id/tv_symbol"
+            />
+        <TextView
+            android:id="@+id/tv_symbol"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{coin_detail.symbol}"
+            app:layout_constraintStart_toEndOf="@+id/symbol"
+            app:layout_constraintTop_toTopOf="@+id/symbol"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/price"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_symbol"
+            app:layout_constraintTop_toBottomOf="@id/tv_symbol"
+            />
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{coin_detail.price}"
+            app:layout_constraintStart_toEndOf="@+id/price"
+            app:layout_constraintTop_toTopOf="@+id/price"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/price_btc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/price_btc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_symbol"
+            app:layout_constraintTop_toBottomOf="@id/tv_price"
+            />
+        <TextView
+            android:id="@+id/tv_price_btc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{coin_detail.priceBtc}"
+            app:layout_constraintStart_toEndOf="@+id/price_btc"
+            app:layout_constraintTop_toTopOf="@+id/price_btc"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/volume"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/volume"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_symbol"
+            app:layout_constraintTop_toBottomOf="@id/tv_price_btc"
+            />
+        <TextView
+            android:id="@+id/tv_volume"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{coin_detail.volume}"
+            app:layout_constraintStart_toEndOf="@+id/volume"
+            app:layout_constraintTop_toTopOf="@+id/volume"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/market_cap"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/market_cap"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_symbol"
+            app:layout_constraintTop_toBottomOf="@id/tv_volume"
+            />
+        <TextView
+            android:id="@+id/tv_market_cap"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{coin_detail.marketCap}"
+            app:layout_constraintStart_toEndOf="@+id/market_cap"
+            app:layout_constraintTop_toTopOf="@+id/market_cap"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/available_supply"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/available_supply"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_symbol"
+            app:layout_constraintTop_toBottomOf="@id/tv_market_cap"
+            />
+        <TextView
+            android:id="@+id/tv_available_supply"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{coin_detail.availableSupply}"
+            app:layout_constraintStart_toEndOf="@+id/available_supply"
+            app:layout_constraintTop_toTopOf="@+id/available_supply"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/total_supply"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/total_supply"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_symbol"
+            app:layout_constraintTop_toBottomOf="@id/tv_available_supply"
+            />
+        <TextView
+            android:id="@+id/tv_total_supply"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{coin_detail.totalSupply}"
+            app:layout_constraintStart_toEndOf="@+id/total_supply"
+            app:layout_constraintTop_toTopOf="@+id/total_supply"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/price_change_1h"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/price_change_1h"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_symbol"
+            app:layout_constraintTop_toBottomOf="@id/tv_total_supply"
+            />
+        <TextView
+            android:id="@+id/tv_price_change_1h"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{coin_detail.priceChange1h}"
+            app:layout_constraintStart_toEndOf="@+id/price_change_1h"
+            app:layout_constraintTop_toTopOf="@+id/price_change_1h"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/price_change_1d"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/price_change_1d"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_symbol"
+            app:layout_constraintTop_toBottomOf="@id/price_change_1h"
+            />
+        <TextView
+            android:id="@+id/tv_price_change_1d"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{coin_detail.priceChange1d}"
+            app:layout_constraintStart_toEndOf="@+id/price_change_1d"
+            app:layout_constraintTop_toTopOf="@+id/price_change_1d"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/price_change_1w"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/price_change_1w"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_symbol"
+            app:layout_constraintTop_toBottomOf="@id/price_change_1d"
+            />
+        <TextView
+            android:id="@+id/tv_price_change_1w"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{coin_detail.priceChange1w}"
+            app:layout_constraintStart_toEndOf="@+id/price_change_1w"
+            app:layout_constraintTop_toTopOf="@+id/price_change_1w"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/website_url"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/website_url"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_symbol"
+            app:layout_constraintTop_toBottomOf="@id/price_change_1w"
+            />
+        <TextView
+            android:id="@+id/tv_website_url"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{coin_detail.websiteUrl}"
+            app:layout_constraintStart_toEndOf="@+id/website_url"
+            app:layout_constraintTop_toTopOf="@+id/website_url"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/reddit_url"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/reddit_url"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_symbol"
+            app:layout_constraintTop_toBottomOf="@id/tv_website_url"
+            />
+        <TextView
+            android:id="@+id/tv_reddit_url"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{coin_detail.redditUrl}"
+            app:layout_constraintStart_toEndOf="@+id/reddit_url"
+            app:layout_constraintTop_toTopOf="@+id/reddit_url"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/twitter_url"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/twitter_url"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_symbol"
+            app:layout_constraintTop_toBottomOf="@id/tv_reddit_url"
+            />
+        <TextView
+            android:id="@+id/tv_twitter_url"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{coin_detail.twitterUrl}"
+            app:layout_constraintStart_toEndOf="@+id/twitter_url"
+            app:layout_constraintTop_toTopOf="@+id/twitter_url"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/contract_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/contractAddress"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_symbol"
+            app:layout_constraintTop_toTopOf="@+id/tv_contract_address"
+            />
+        <TextView
+            android:id="@+id/tv_contract_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{coin_detail.contractAddress}"
+            app:layout_constraintStart_toEndOf="@+id/contract_address"
+            app:layout_constraintTop_toBottomOf="@id/tv_twitter_url"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/decimals"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/decimals"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_symbol"
+            app:layout_constraintTop_toBottomOf="@id/tv_contract_address"
+            />
+        <TextView
+            android:id="@+id/tv_decimals"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{coin_detail.decimals}"
+            app:layout_constraintStart_toEndOf="@+id/decimals"
+            app:layout_constraintTop_toTopOf="@+id/decimals"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+        <TextView
+            android:id="@+id/exp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/exp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_symbol"
+            app:layout_constraintTop_toBottomOf="@id/decimals"
+            />
+        <ListView
+            android:id="@+id/lv_exp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/exp"
+            app:layout_constraintTop_toTopOf="@id/exp"
+            app:layout_constraintEnd_toEndOf="@id/tv_symbol"
+            tools:listitem="@layout/simple_list_item"
+            />
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/exp1"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="@string/exp1"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintEnd_toStartOf="@id/tv_symbol"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/decimals"-->
+    <!--        />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_exp1"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="@string/exp1"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/exp1"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/exp1"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/exp2"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="@string/exp1"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintEnd_toStartOf="@id/tv_symbol"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/exp1"-->
+    <!--        />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_exp2"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="@string/exp2"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/exp2"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/exp2"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

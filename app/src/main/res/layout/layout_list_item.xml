@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="coin"
+            type="com.companyname.kotlinpractice.Coin" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:imageUrl="@{coin.getIcon()}"
+            android:padding="5dp"
+            />
+
+        <Space
+            android:id="@+id/space_symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="10dp"
+            app:layout_constraintStart_toEndOf="@+id/iv_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_symbol"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:textColor="@color/cardview_dark_background"
+            tools:text="@{coin.getSymbol()}"
+            app:layout_constraintStart_toEndOf="@+id/iv_icon"
+            app:layout_constraintTop_toBottomOf="@+id/space_symbol"
+            />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/cardview_dark_background"
+            tools:text="@{coin.getName()}"
+            app:layout_constraintStart_toEndOf="@+id/iv_icon"
+            app:layout_constraintTop_toBottomOf="@+id/tv_symbol"
+            />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:textColor="@color/cardview_dark_background"
+            tools:text="@{coin.getFormattedPrice()}"
+            android:textAlignment="viewEnd"
+            app:layout_constraintStart_toEndOf="@+id/tv_symbol"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_symbol"
+            />
+        <TextView
+            android:id="@+id/tv_priceChange1D"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/cardview_dark_background"
+            tools:text="@{coin.getFormattedPriceChange1d()}"
+            android:textAlignment="viewEnd"
+            app:layout_constraintStart_toEndOf="@+id/tv_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_price"
+            app:signedDoublerColor="@{coin.getPriceChange1d()}"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

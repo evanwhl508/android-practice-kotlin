@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">android practice</string>
+    <string name="percentage">%.2f%%</string>
+
+    <string name="symbol">Symbol</string>
+    <string name="price">Price</string>
+    <string name="price_btc">Price (BTC)</string>
+    <string name="volume">Volume</string>
+    <string name="market_cap">Market Cap</string>
+    <string name="available_supply">Available Supply4</string>
+    <string name="total_supply">Total Supply</string>
+    <string name="price_change_1h">Price Change (1h)</string>
+    <string name="price_change_1d">Price Change (1d)</string>
+    <string name="price_change_1w">Price Change (1w)</string>
+    <string name="website_url">Website Url</string>
+    <string name="reddit_url">Reddit Url</string>
+    <string name="twitter_url">Twitter Url</string>
+    <string name="contractAddress">Contract Address</string>
+    <string name="decimals">Decimals</string>
+    <string name="exp">Exp</string>
+
+    <string name="exchange">Exchange</string>
+    <string name="pair">Pair</string>
+    <string name="pair_price">Pair Price</string>
+
+</resources>

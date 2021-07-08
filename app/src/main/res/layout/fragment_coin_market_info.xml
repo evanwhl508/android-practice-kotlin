@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    <data>
+        <variable
+            name="market"
+            type="com.companyname.kotlinpractice.CoinMarketInfo" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+        <TextView
+            android:id="@+id/tv_exchange"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:textColor="@color/cardview_dark_background"
+            tools:text="@{market.exchange}"
+            android:padding="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_price"
+            />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:textColor="@color/cardview_dark_background"
+            tools:text="@{market.price}"
+            android:textAlignment="viewEnd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_exchange"
+            />
+        <TextView
+            android:id="@+id/tv_volume"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:textSize="15sp"
+            android:textColor="@color/cardview_dark_background"
+            tools:text="@{market.volume}"
+            android:textAlignment="viewEnd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_price"
+            />
+        <TextView
+            android:id="@+id/tv_pair"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:textSize="15sp"
+            android:textColor="@color/cardview_dark_background"
+            tools:text="@{market.pair}"
+            android:textAlignment="viewEnd"
+            app:layout_constraintStart_toStartOf="@+id/tv_exchange"
+            app:layout_constraintTop_toBottomOf="@+id/tv_exchange"
+            />
+        <TextView
+            android:id="@+id/tv_pair_price"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:textSize="15sp"
+            android:textColor="@color/cardview_dark_background"
+            tools:text="@{market.pairPrice}"
+            android:textAlignment="viewStart"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_pair"
+            app:layout_constraintTop_toBottomOf="@+id/tv_exchange"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
