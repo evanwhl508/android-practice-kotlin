@@ -20,8 +20,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:imageUrl="@{coin.getIcon()}"
-            android:padding="5dp"
-            />
+            android:padding="5dp"/>
 
         <Space
             android:id="@+id/space_symbol"
