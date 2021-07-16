@@ -25,18 +25,7 @@ class LoginViewModel() : ViewModel() {
     }
 
     private fun checkBtnEnable() {
-        if (name.value == null || password.value == null) {
-            btnEnable.setValue(false)
-            return
-        } else if (name.value.isNullOrBlank() || password.value.isNullOrBlank()) {
-            btnEnable.setValue(false)
-            return
-        }
-        else {
-            btnEnable.setValue(true)
-            return
-        }
-
+        btnEnable.value = !(name.value.isNullOrBlank() || password.value.isNullOrBlank())
     }
 
     fun getCoins() : Observable<ArrayList<Coin>> {

@@ -30,15 +30,15 @@ open class LoginActivity(): AppCompatActivity() {
     var brhA:BehaviorSubject<Int> = BehaviorSubject.create()
 
     lateinit var binding: ActivityLoginBinding
-    var viewModel:LoginViewModel = LoginViewModel()
+    var viewModel = LoginViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_login)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
 
-        binding.setModel(viewModel)
+        binding.model = viewModel
         viewModel.getCoins().subscribe()
 
         val acc:EditText = findViewById(R.id.et_name)
@@ -56,7 +56,7 @@ open class LoginActivity(): AppCompatActivity() {
 
         Observable.combineLatest(obsAcc, obsLoginBtn, {charSequence, unit -> charSequence.toString()})
                 .subscribe{
-            val i:Intent = Intent(this, RecycleActivity::class.java)
+            val i = Intent(this, MainPageActivity::class.java)
             i.putExtra("username", it)
             startActivity(i)
         }
