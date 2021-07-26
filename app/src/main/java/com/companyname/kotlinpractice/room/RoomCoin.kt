@@ -16,6 +16,6 @@ class RoomCoin {
     @ColumnInfo(name = "created_time", typeAffinity = ColumnInfo.INTEGER)
     var time: Long = Calendar.getInstance().timeInMillis
 
-    var useful: Int = 0
+//    var useful: Int = 0
 
 }

@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.companyname.kotlinpractice.databinding.PersonalInfoFragmentBinding
+import com.companyname.kotlinpractice.ui.deposit.DepositActivity
 import java.util.ArrayList
 
 class PersonalInfoFragment : Fragment() {
@@ -52,7 +53,7 @@ class PersonalInfoFragment : Fragment() {
         pref?.let{viewModel.checkBox.postValue(pref.getBoolean("is_asset_visible", false))}
 
         binding.btnDeposit.setOnClickListener{
-            DepositActivity.start(requireView())
+            DepositActivity.start(requireContext())
         }
 
 

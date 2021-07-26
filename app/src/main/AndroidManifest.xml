@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".DepositActivity"></activity>
+        <activity android:name=".ui.deposit.DepositActivity"></activity>
         <activity android:name=".MainPageActivity" />
         <activity android:name=".CoinDetailActivity" /> <!-- <activity android:name=".FragmentActivity"></activity> -->
         <!-- <activity android:name=".RecycleActivity" /> -->

@@ -50,7 +50,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:nestedScrollingEnabled="false"
             tools:listitem="@layout/layout_list_item"
             app:layout_constraintStart_toStartOf="parent"

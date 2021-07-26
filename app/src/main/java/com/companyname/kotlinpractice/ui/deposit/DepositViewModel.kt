@@ -1,4 +1,4 @@
-package com.companyname.kotlinpractice
+package com.companyname.kotlinpractice.ui.deposit
 
 import androidx.lifecycle.ViewModel
 

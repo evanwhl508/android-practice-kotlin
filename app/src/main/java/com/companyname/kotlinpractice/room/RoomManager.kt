@@ -8,13 +8,14 @@ class RoomManager private constructor() {
     private set
 
     companion object {
+        @JvmStatic
         val instance = RoomManager()
     }
 
     fun init(context: Context) {
-        db = Room.databaseBuilder<CoinDatabase>(context, CoinDatabase::class.java, "test-db")
-//            .allowMainThreadQueries()
-            .addMigrations(CoinDatabase.MIGRATION_1_2)
+        db = Room.databaseBuilder<CoinDatabase>(context.applicationContext, CoinDatabase::class.java, "test-db")
+            .allowMainThreadQueries()
+//            .addMigrations(CoinDatabase.MIGRATION_1_2)
             .build()
     }
 }

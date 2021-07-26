@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.companyname.kotlinpractice.R;
-import com.companyname.kotlinpractice.RecycleActivity;
+import com.companyname.kotlinpractice.MainPageActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         other.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, RecycleActivity.class);
+                Intent i = new Intent(MainActivity.this, MainPageActivity.class);
                 i.putExtra("name", "Test");
                 Pair<View, String> pair1 = new Pair(findViewById(R.id.tv_main), "tv_test");
                 ActivityOptions options = ActivityOptions

@@ -61,7 +61,7 @@
             tools:text="@{coin.getFormattedPrice()}"
             android:textAlignment="viewEnd"
             app:layout_constraintStart_toEndOf="@+id/tv_symbol"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/check_box_fav"
             app:layout_constraintTop_toTopOf="@id/tv_symbol"
             />
         <TextView
@@ -73,9 +73,24 @@
             tools:text="@{coin.getFormattedPriceChange1d()}"
             android:textAlignment="viewEnd"
             app:layout_constraintStart_toEndOf="@+id/tv_name"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/check_box_fav"
             app:layout_constraintTop_toBottomOf="@+id/tv_price"
             app:signedDoublerColor="@{coin.getPriceChange1d()}"
+            />
+
+        <CheckBox
+            android:id="@+id/check_box_fav"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:clickable="true"
+            android:singleLine="true"
+            android:width="20dp"
+            android:checked="@{coin.getFav()}"
+            app:updateFav="@{coin.getFav()}"
+            app:layout_constraintStart_toEndOf="@id/tv_priceChange1D"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             />
 
 

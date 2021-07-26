@@ -25,6 +25,8 @@ public class Coin implements Serializable {
     @SerializedName("priceChange1d")
     private double priceChange1d;
 
+    private Boolean isFav = false;
+
     private String formattedDouble(Double d) {
         DecimalFormat formatter = new DecimalFormat("#0.00");
         return formatter.format(d);
@@ -95,5 +97,13 @@ public class Coin implements Serializable {
                 ", symbol='" + symbol + '\'' +
                 ", price=" + price +
                 '}';
+    }
+
+    public Boolean getFav() {
+        return isFav;
+    }
+
+    public void setFav(Boolean fav) {
+        isFav = fav;
     }
 }

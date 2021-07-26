@@ -1,11 +1,11 @@
-package com.companyname.kotlinpractice
+package com.companyname.kotlinpractice.ui.deposit
 
-import android.R.layout
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.ArrayAdapter
+import com.companyname.kotlinpractice.BaseActivity
+import com.companyname.kotlinpractice.R
 import com.companyname.kotlinpractice.databinding.ActivityDepositBinding
 import com.companyname.kotlinpractice.realm.RealmDeposit
 import com.companyname.kotlinpractice.realm.RealmManager
@@ -16,42 +16,41 @@ import io.realm.kotlin.where
 class DepositActivity : BaseActivity<ActivityDepositBinding, DepositViewModel>() {
     lateinit var res: RealmResults<RealmDeposit>
     var depositList: ArrayList<String> = arrayListOf<String>()
+    lateinit var adapter: DepositListAdapter
 
     companion object {
-        fun start(v: View) {
-            val intent = Intent(v.context, DepositActivity::class.java)
-            v.context.startActivity(intent)
+        fun start(context: Context) {
+            val intent = Intent(context, DepositActivity::class.java)
+            context.startActivity(intent)
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        ***Realm***
         res = RealmManager.instance.realmDeposit.where<RealmDeposit>().findAllAsync()
-        res?.forEach {
-            depositList.add(it.amount)
-        }
-        val adapter =
+//        res.forEach {
+//            depositList.add(it.amount)
+//        }
+        Log.e("1111111", "onCreate: " + depositList.toString())
+
+        adapter =
         DepositListAdapter(
-            this,
-            this.depositList.toTypedArray()
+            this.depositList.toTypedArray().reversedArray()
         )
-        binding.lvDepositList.setAdapter(adapter)
-
-
         res.addChangeListener { change ->
+            this.depositList.clear()
             change.forEach {
-                Log.e("deposit", "" + it)
                 this.depositList.add(it.amount)
-                val a = DepositListAdapter(
-                    this,
-                    this.depositList.toTypedArray()
-                )
-                binding.lvDepositList.setAdapter(a)
             }
+            val a = DepositListAdapter(
+                this.depositList.toTypedArray().reversedArray()
+            )
+            binding.lvDepositList.setAdapter(a)
         }
         binding.btnConfirm.setOnClickListener {
             RealmManager.instance.realmDeposit.executeTransactionAsync {
                 val deposit = RealmDeposit()
+                deposit.id = System.currentTimeMillis().toString()
                 deposit.amount = binding.etAmount.text.toString()
                 it.insertOrUpdate(deposit)
             }
@@ -65,4 +64,14 @@ class DepositActivity : BaseActivity<ActivityDepositBinding, DepositViewModel>()
     override fun bindViewModel() {
         binding.model = viewModel
     }
+
+//    override fun onResume() {
+//        super.onResume()
+//
+//        adapter =
+//            DepositListAdapter(
+//                arrayOf("123","456")
+//            )
+//        binding.lvDepositList.setAdapter(adapter)
+//    }
 }
