@@ -40,13 +40,12 @@ class MainPageActivity : FragmentActivity() {
         }.attach()
     }
 
-    private class ScreenSlidePagerAdapter(fa: FragmentActivity) :
-        FragmentStateAdapter(fa) {
+    private class ScreenSlidePagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         override fun createFragment(position: Int): Fragment {
             return when (position) {
                 0 -> RecycleActivity()
                 1 -> PersonalInfoFragment()
-                else -> PersonalInfoFragment()
+                else -> RecycleActivity()
             }
         }
 

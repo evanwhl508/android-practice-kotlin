@@ -25,7 +25,7 @@ public class Coin implements Serializable {
     @SerializedName("priceChange1d")
     private double priceChange1d;
 
-    private Boolean isFav = false;
+    public Boolean isFav = false;
 
     private String formattedDouble(Double d) {
         DecimalFormat formatter = new DecimalFormat("#0.00");

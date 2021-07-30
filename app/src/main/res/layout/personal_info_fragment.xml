@@ -47,7 +47,7 @@
         <Button
             android:id="@+id/btn_deposit"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="0dp"
             android:text="Deposit"
             app:layout_constraintTop_toBottomOf="@id/tv_current_asset_amount"
             app:layout_constraintStart_toStartOf="parent"

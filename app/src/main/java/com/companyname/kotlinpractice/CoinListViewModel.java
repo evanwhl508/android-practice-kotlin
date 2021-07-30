@@ -8,15 +8,17 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Observable;
 
 public class CoinListViewModel extends ViewModel {
-    public MutableLiveData<String> searchStr = new MutableLiveData<>();
+    public MutableLiveData<String> searchStr = new MutableLiveData<String>("");
     public MutableLiveData<Integer> curSpinnerPosition = new MutableLiveData<>();
     public MutableLiveData<ArrayList<Coin>> ldCoin = new MutableLiveData<>();
     private final MutableLiveData<ArrayList<Coin>> filteredCoin = new MutableLiveData<>();
+    public MutableLiveData<ArrayList<String>> favCoinIds = new MutableLiveData<>();
 
     public LiveData<ArrayList<Coin>> getFilteredCoin() {
         return filteredCoin;
@@ -29,6 +31,13 @@ public class CoinListViewModel extends ViewModel {
         return CoinRepo.getCoins(curr)
 //                .onErrorReturnItem()
                 .doOnNext(coins -> {
+                    Objects.requireNonNull(favCoinIds.getValue()).forEach(favCoinId -> {
+                        coins.forEach(coin -> {
+                            if (coin.getId().equals(favCoinId)) {
+                                coin.setFav(true);
+                            }
+                        });
+                    });
                     ldCoin.postValue(coins);
                     filteredCoin.postValue(coins);
                 });
@@ -44,9 +53,9 @@ public class CoinListViewModel extends ViewModel {
                                 c.getSymbol().toLowerCase().contains(searchStr.getValue().toLowerCase()) ||
                                         c.getName().toLowerCase().contains(searchStr.getValue().toLowerCase()))
                         .collect(Collectors.toList());
-                filteredCoin.postValue(new ArrayList<Coin>(filtered_list));
             }
+            filteredCoin.postValue(new ArrayList<Coin>(filtered_list));
+            Log.e("VM", "filterCoins: " + filtered_list.toString());
         }
-        Log.e("VM", "filterCoins: " + filtered_list.toString());
     }
 }

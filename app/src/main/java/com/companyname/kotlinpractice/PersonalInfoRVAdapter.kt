@@ -25,8 +25,7 @@ class PersonalInfoRVAdapter(coinList: List<Coin>):
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val coin = coins[position]
-        holder.bind(coin)
+        holder.bind(coins[position])
     }
 
     override fun getItemCount(): Int {
@@ -36,9 +35,9 @@ class PersonalInfoRVAdapter(coinList: List<Coin>):
     class ViewHolder(binding: LayoutListItemBinding) : RecyclerView.ViewHolder(binding.getRoot()) {
         var binding: LayoutListItemBinding
         private var coin: Coin? = null
-        fun bind(coin: Coin?) {
-            binding.coin = coin
-            this.coin = coin
+        fun bind(c: Coin?) {
+            binding.coinEntity = c
+            this.coin = c
         }
 
         init {

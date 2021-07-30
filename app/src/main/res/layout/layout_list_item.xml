@@ -2,7 +2,7 @@
 <layout>
     <data>
         <variable
-            name="coin"
+            name="coin_entity"
             type="com.companyname.kotlinpractice.Coin" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -19,7 +19,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintDimensionRatio="1:1"
-            app:imageUrl="@{coin.getIcon()}"
+            app:imageUrl="@{coin_entity.getIcon()}"
             android:padding="5dp"/>
 
         <Space
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:textSize="35sp"
             android:textColor="@color/cardview_dark_background"
-            tools:text="@{coin.getSymbol()}"
+            tools:text="@{coin_entity.getSymbol()}"
             app:layout_constraintStart_toEndOf="@+id/iv_icon"
             app:layout_constraintTop_toBottomOf="@+id/space_symbol"
             />
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textColor="@color/cardview_dark_background"
-            tools:text="@{coin.getName()}"
+            tools:text="@{coin_entity.getName()}"
             app:layout_constraintStart_toEndOf="@+id/iv_icon"
             app:layout_constraintTop_toBottomOf="@+id/tv_symbol"
             />
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:textSize="35sp"
             android:textColor="@color/cardview_dark_background"
-            tools:text="@{coin.getFormattedPrice()}"
+            tools:text="@{coin_entity.getFormattedPrice()}"
             android:textAlignment="viewEnd"
             app:layout_constraintStart_toEndOf="@+id/tv_symbol"
             app:layout_constraintEnd_toStartOf="@+id/check_box_fav"
@@ -70,12 +70,12 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="@color/cardview_dark_background"
-            tools:text="@{coin.getFormattedPriceChange1d()}"
+            tools:text="@{coin_entity.getFormattedPriceChange1d()}"
             android:textAlignment="viewEnd"
             app:layout_constraintStart_toEndOf="@+id/tv_name"
             app:layout_constraintEnd_toStartOf="@+id/check_box_fav"
             app:layout_constraintTop_toBottomOf="@+id/tv_price"
-            app:signedDoublerColor="@{coin.getPriceChange1d()}"
+            app:signedDoublerColor="@{coin_entity.getPriceChange1d()}"
             />
 
         <CheckBox
@@ -85,8 +85,8 @@
             android:clickable="true"
             android:singleLine="true"
             android:width="20dp"
-            android:checked="@{coin.getFav()}"
-            app:updateFav="@{coin.getFav()}"
+            android:checked="@={coin_entity.isFav}"
+            app:updateFav="@{coin_entity.isFav}"
             app:layout_constraintStart_toEndOf="@id/tv_priceChange1D"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

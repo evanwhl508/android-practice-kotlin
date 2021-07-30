@@ -7,6 +7,8 @@ import java.util.*
 
 @Entity(tableName = "FavCoins")
 class RoomFavCoin {
+
+    @JvmField
     @PrimaryKey
     var coinId: String = ""
 }

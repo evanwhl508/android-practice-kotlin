@@ -24,10 +24,13 @@ class ViewDataBindingAdapter {
         @BindingAdapter("app:updateFav")
         @JvmStatic
         fun setUpdateFav(v: CheckBox, isFav: Boolean) {
-            if (isFav) {
+//            Log.e("updateFav", "isChecked " + v.isChecked)
+//            Log.e("updateFav", "IsFav " + isFav)
+            if (v.isChecked) {
                 v.setButtonDrawable(R.drawable.ic_baseline_star_24)
             } else {
                 v.setButtonDrawable(R.drawable.ic_baseline_star_border_24)
+//                Log.e("updateFav", "Do Nothing " + isFav)
             }
         }
 
@@ -40,10 +43,12 @@ class ViewDataBindingAdapter {
 
         @BindingAdapter("app:signedDoublerColor")
         @JvmStatic
-        fun setSignedDoublerColor(v: TextView, d: Double) = if (d < 0) {
-            v.setTextColor(v.context.getColor(R.color.alert_red))
-        } else {
-            v.setTextColor(Color.parseColor("#228B22"))
+        fun setSignedDoublerColor(v: TextView, d: Double) {
+            if (d < 0) {
+                v.setTextColor(v.context.getColor(R.color.alert_red))
+            } else {
+                v.setTextColor(Color.parseColor("#228B22"))
+            }
         }
     }
 }
