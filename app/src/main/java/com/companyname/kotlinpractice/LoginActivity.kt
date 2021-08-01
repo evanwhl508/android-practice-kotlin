@@ -1,6 +1,7 @@
 @file:JvmName("RxTextView")
 package com.companyname.kotlinpractice
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 
@@ -60,25 +61,25 @@ open class LoginActivity(): AppCompatActivity() {
 //            Log.e("error", "onCreate: ", )
 //            throw RuntimeException("Errrrrrror")
 //        }
-//        auth = Firebase.auth
-//
-//        auth.signInAnonymously()
-//            .addOnCompleteListener(this) { task ->
-//                if (task.isSuccessful) {
-//                    // Sign in success, update UI with the signed-in user's information
-//                    Log.d("sign in", "signInAnonymously:success")
-//                    auth.currentUser?.let{
-//                        uploadToken(it)
-//                    }
-//
-//                } else {
-//                    // If sign in fails, display a message to the user.
-//                    Log.w("sign in", "signInAnonymously:failure", task.exception)
-//                    Toast.makeText(baseContext, "Authentication failed.",
-//                        Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//
+        auth = Firebase.auth
+
+        auth.signInAnonymously()
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("sign in", "signInAnonymously:success")
+                    auth.currentUser?.let{
+                        uploadToken(it)
+                    }
+
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w("sign in", "signInAnonymously:failure", task.exception)
+                    Toast.makeText(baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
+
 //        FirestoreManager.instance.db
 //            .collection("testing")
 //            .addSnapshotListener { value, error ->
@@ -104,6 +105,8 @@ open class LoginActivity(): AppCompatActivity() {
 
         Observable.combineLatest(obsAcc, obsLoginBtn, {charSequence, unit -> charSequence.toString()})
                 .subscribe{
+            val pref = getSharedPreferences("firebase", Context.MODE_PRIVATE)
+            pref.edit().putString("user", it).apply()
             val i = Intent(this, MainPageActivity::class.java)
             i.putExtra("username", it)
             startActivity(i)
@@ -119,7 +122,6 @@ open class LoginActivity(): AppCompatActivity() {
                     put("token", it)
                 }, SetOptions.merge())
         }
-
     }
 
     override fun onStop() {

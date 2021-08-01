@@ -35,6 +35,7 @@ class MainPageActivity : FragmentActivity() {
             when (position) {
                 0 -> tab.text = "Price List"
                 1 -> tab.text = "Personal Info"
+                2 -> tab.text = "Price Alert"
                 else -> tab.text = "New Tab " + (position + 1)
             }
         }.attach()
@@ -45,12 +46,13 @@ class MainPageActivity : FragmentActivity() {
             return when (position) {
                 0 -> RecycleActivity()
                 1 -> PersonalInfoFragment()
+                2 -> PriceAlertFragment()
                 else -> RecycleActivity()
             }
         }
 
         override fun getItemCount(): Int {
-            return 2
+            return 3
         }
     }
 }

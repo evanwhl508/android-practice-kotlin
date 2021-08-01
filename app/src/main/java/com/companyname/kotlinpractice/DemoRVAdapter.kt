@@ -1,21 +1,24 @@
 package com.companyname.kotlinpractice;
 
-import android.content.Context;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.companyname.kotlinpractice.databinding.LayoutListItemBinding;
-import com.companyname.kotlinpractice.room.CoinDatabase;
-import com.companyname.kotlinpractice.room.RoomCoin;
-import com.companyname.kotlinpractice.room.RoomFavCoin;
-import com.companyname.kotlinpractice.room.RoomManager;
+import android.content.Context
+import android.content.DialogInterface
+import android.text.InputType
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.RecyclerView
+import com.companyname.kotlinpractice.databinding.LayoutListItemBinding
+import com.companyname.kotlinpractice.firestore.FirestoreManager
+import com.companyname.kotlinpractice.room.RoomFavCoin
+import com.companyname.kotlinpractice.room.RoomManager
+import com.google.firebase.firestore.SetOptions
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import java.util.*
+import kotlin.collections.HashMap
+import kotlin.collections.List
 
-import java.util.Collections;
 
 class DemoRVAdapter : RecyclerView.Adapter<DemoRVAdapter.ViewHolder>() {
     private var coins: List<Coin> = Collections.emptyList()
@@ -71,12 +74,51 @@ class DemoRVAdapter : RecyclerView.Adapter<DemoRVAdapter.ViewHolder>() {
                     it.getAllFavCoin().subscribe{ res -> Log.e("Room", ": $res")}
 
                     }
-//                if (this.binding.checkBoxFav.isChecked()) {
-//                    RoomManager.instance.db.favCoinDao()?.insertFavCoin(c)
-//                } else {
-//                    RoomManager.instance.db.favCoinDao()?.delete(c)
+            }
+            this.binding.checkBoxAlert.setOnClickListener{
+//                val pref = binding.root.context.getSharedPreferences("firebase", Context.MODE_PRIVATE)
+//                val uid = pref.getString("user", null)
+//                uid?.let {
+//                    FirestoreManager.instance.db
+//                        .collection("price_alert")
+//                        .document("$uid")
+//                        .collection("coins")
+//                        .document(coin.id)
+//                        .set(HashMap<String, Any>().apply {
+//                            put("higher", 500)
+//                        }, SetOptions.merge())
 //                }
+                Log.e("alert", "clicked!")
+                val builder: AlertDialog.Builder = AlertDialog.Builder(binding.root.context)
+                builder.setTitle("Alert Price")
+// Set up the input
+                val input = EditText(binding.root.context)
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                input.inputType = InputType.TYPE_CLASS_NUMBER
+                builder.setView(input)
+// Set up the buttons
+                builder.setPositiveButton("Confirm",
+                    DialogInterface.OnClickListener { dialog, which ->
+                        Log.e("Confirm Button", coin.id + ": " + input.text.toString())
 
+                        val pref = binding.root.context.getSharedPreferences("firebase", Context.MODE_PRIVATE)
+                        val username = pref.getString("user", null)
+                        Log.e("Confirm Button", "$username")
+                        username?.let {
+                            FirestoreManager.instance.db
+                                .collection("price_alert")
+                                .document("$username")
+                                .collection("coins")
+                                .document(coin.id)
+                                .set(HashMap<String, Any>().apply {
+                                    put("higher", input.text.toString())
+                                    put("id", coin.id)
+                                }, SetOptions.merge())
+                        }
+                    })
+                builder.setNegativeButton("Cancel",
+                    DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+                builder.show()
             }
         }
 

@@ -31,13 +31,15 @@ public class CoinListViewModel extends ViewModel {
         return CoinRepo.getCoins(curr)
 //                .onErrorReturnItem()
                 .doOnNext(coins -> {
-                    Objects.requireNonNull(favCoinIds.getValue()).forEach(favCoinId -> {
-                        coins.forEach(coin -> {
-                            if (coin.getId().equals(favCoinId)) {
-                                coin.setFav(true);
-                            }
+                    if (favCoinIds.getValue() != null) {
+                        favCoinIds.getValue().forEach(favCoinId -> {
+                            coins.forEach(coin -> {
+                                if (coin.getId().equals(favCoinId)) {
+                                    coin.setFav(true);
+                                }
+                            });
                         });
-                    });
+                    }
                     ldCoin.postValue(coins);
                     filteredCoin.postValue(coins);
                 });

@@ -90,6 +90,21 @@
             app:layout_constraintStart_toEndOf="@id/tv_priceChange1D"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/check_box_alert"
+            />
+
+        <CheckBox
+            android:id="@+id/check_box_alert"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:clickable="true"
+            android:singleLine="true"
+            android:width="20dp"
+            android:checked="false"
+            android:button="@drawable/ic_baseline_add_alert_24"
+            app:layout_constraintStart_toEndOf="@id/tv_priceChange1D"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/check_box_fav"
             app:layout_constraintBottom_toBottomOf="parent"
             />
 

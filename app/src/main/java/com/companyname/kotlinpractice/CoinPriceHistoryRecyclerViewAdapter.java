@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.companyname.kotlinpractice.databinding.FragmentCoinPriceHistoryBinding;
 import com.companyname.kotlinpractice.databinding.FragmentCoinPriceHistoryListBinding;
-import com.companyname.kotlinpractice.placeholder.PlaceholderContent.PlaceholderItem;
 //import com.companyname.kotlinpractice.databinding.FragmentCoinPriceHistoryBinding;
 
 import java.text.DecimalFormat;
@@ -65,7 +64,6 @@ public class CoinPriceHistoryRecyclerViewAdapter extends RecyclerView.Adapter<Co
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView mIdView;
         public final TextView mContentView;
-        public PlaceholderItem mItem;
 
         public ViewHolder(FragmentCoinPriceHistoryBinding binding) {
             super(binding.getRoot());

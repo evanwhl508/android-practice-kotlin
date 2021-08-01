@@ -1,17 +1,12 @@
 package com.companyname.kotlinpractice;
 
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import com.companyname.kotlinpractice.placeholder.PlaceholderContent.PlaceholderItem;
 import com.companyname.kotlinpractice.databinding.FragmentCoinMarketInfoBinding;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 /**
