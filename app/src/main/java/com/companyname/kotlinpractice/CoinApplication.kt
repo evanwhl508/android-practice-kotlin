@@ -16,7 +16,7 @@ class CoinApplication: Application() {
         RealmManager.instance.initialize(this)
         RoomManager.instance.init(this)
 
-//        initOneSignal()
+        initOneSignal()
     }
 
     private fun initOneSignal(){
