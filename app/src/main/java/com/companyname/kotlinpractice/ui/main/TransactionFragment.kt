@@ -49,23 +49,8 @@ class TransactionFragment : Fragment() {
                 } ?: run {
                     val transactionList = arrayListOf<UserTransaction>()
                     value?.documents?.mapNotNull { it.data }?.forEach { data ->
-                        Log.e("transaction data", "onCreateView: ${data["symbol"]} & ${data["amount"]}", )
-                        var itemAmount = data["amount"]
-                        var itemPrice = data["price"]
-                        if (itemAmount is Long) {
-                            itemAmount = itemAmount.toDouble()
-                        }
-                        if (itemPrice is Long) {
-                            itemPrice = itemPrice.toDouble()
-                        }
+                        Log.e("transaction data", "onCreateView: ${data["symbol"]} & ${data["amount"]}")
                         val b = Gson().fromJson(data.toString(), UserTransaction::class.java)
-//                        val b = UserTransaction(
-//                            symbol = data["symbol"] as String,
-//                            amount = itemAmount as Double,
-//                            direction = data["direction"] as String,
-//                            price = itemPrice as Double,
-//                            timestamp = data["timestamp"] as Long,
-//                        )
                         transactionList.add(b)
                     }
                     Log.e("transaction data", "$transactionList", )

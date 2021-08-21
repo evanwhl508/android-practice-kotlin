@@ -41,20 +41,16 @@ class PriceAlertRecyclerViewAdapter(var context: Context?) : RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-//        Log.e("item.coinId", "onBindViewHolder: $item.coinId", )
-//        Log.e("item.price", "onBindViewHolder: $item.price", )
         holder.idView.text = item.coinId
         holder.contentView.text = item.price
+        val alertID = "${item.coinId}_${item.timestamp}"
         holder.btnView.setOnClickListener{
             context?.let {
                 val pref = context!!.getSharedPreferences("firebase", Context.MODE_PRIVATE)
                 val uid = pref?.getString("user", null)
                 uid?.let {
                     FirestoreManager.instance.db
-//                        .collection("price_alert")
-                        .document("price_alert/$uid/coins/${item.coinId}")
-//                        .collection("coins")
-//                        .document(item.coinId)
+                        .document("users/$uid/price_alert/$alertID")
                         .delete()
                         .asObservable { true }
                         .doOnNext{
@@ -65,20 +61,6 @@ class PriceAlertRecyclerViewAdapter(var context: Context?) : RecyclerView.Adapte
                             this.values.removeAt(position)
                             this.notifyItemRemoved(position)
                         }
-//                        .addOnSuccessListener {
-//                            Log.e(
-//                                "clear button",
-//                                "DocumentSnapshot successfully deleted ${item.coinId}!"
-//                            )
-//                            this.values.removeAt(position)
-//                            this.notifyItemRemoved(position)
-//                        }
-//                        .addOnFailureListener { e ->
-//                            Log.e(
-//                                "clear button",
-//                                "Error deleting document"
-//                            )
-//                        }
                 }
             }
         }

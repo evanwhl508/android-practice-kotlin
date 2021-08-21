@@ -36,7 +36,7 @@ class PriceAlertFragment : Fragment() {
         val uid = pref?.getString("user", null)
         uid?.let {
             FirestoreManager.instance.db
-                .collection("price_alert/$uid/coins")
+                .collection("users/$uid/price_alert")
                 .addSnapshotListener { value, error ->
                     error?.let {
                         Log.e("1111", it.toString())
@@ -44,15 +44,10 @@ class PriceAlertFragment : Fragment() {
                         val priceAlertList = arrayListOf<PriceAlert>()
                         value?.documents?.mapNotNull { it.data }?.forEach { data ->
                             Log.e("doc data", "onCreateView: $data", )
-//                            val pa = PriceAlert(
-//                                coinId = data["id"] as String,
-//                                price = data["higher"] as String
-//                            )
                             val pa = Gson().fromJson(data.toString(),PriceAlert::class.java)
                             Log.e("GSON", "$pa", )
                             priceAlertList.add(pa)
                             rvAdapter.setItems(priceAlertList)
-                            //                                rvAdapter.notifyDataSetChanged()
                             }
                         }
                     }

@@ -15,6 +15,7 @@ import com.companyname.kotlinpractice.room.RoomFavCoin
 import com.companyname.kotlinpractice.room.RoomManager
 import com.google.firebase.firestore.SetOptions
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import java.sql.Timestamp
 import java.util.*
 import kotlin.collections.HashMap
 import kotlin.collections.List
@@ -105,13 +106,13 @@ class DemoRVAdapter : RecyclerView.Adapter<DemoRVAdapter.ViewHolder>() {
                         val username = pref.getString("user", null)
                         Log.e("Confirm Button", "$username")
                         username?.let {
+                            val timestamp = Timestamp(System.currentTimeMillis()).time
                             FirestoreManager.instance.db
-                                .collection("price_alert")
-                                .document("$username")
-                                .collection("coins")
-                                .document(coin.id)
+                                .document("users/$username/price_alert/${coin.id}_$timestamp")
                                 .set(HashMap<String, Any>().apply {
-                                    put("higher", input.text.toString())
+                                    put("timestamp", timestamp)
+                                    put("direction", "upper")
+                                    put("price", input.text.toString())
                                     put("id", coin.id)
                                 }, SetOptions.merge())
                         }
