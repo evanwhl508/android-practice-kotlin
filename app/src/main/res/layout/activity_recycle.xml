@@ -51,6 +51,7 @@
             android:id="@+id/rv_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constrainedHeight="true"
             android:nestedScrollingEnabled="false"
             tools:listitem="@layout/layout_list_item"
             app:layout_constraintStart_toStartOf="parent"

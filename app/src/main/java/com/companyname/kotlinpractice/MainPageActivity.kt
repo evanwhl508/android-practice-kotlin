@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.companyname.kotlinpractice.ui.main.TransactionFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -36,6 +37,7 @@ class MainPageActivity : FragmentActivity() {
                 0 -> tab.text = "Price List"
                 1 -> tab.text = "Personal Info"
                 2 -> tab.text = "Price Alert"
+                3 -> tab.text = "Transactions"
                 else -> tab.text = "New Tab " + (position + 1)
             }
         }.attach()
@@ -47,12 +49,13 @@ class MainPageActivity : FragmentActivity() {
                 0 -> RecycleActivity()
                 1 -> PersonalInfoFragment()
                 2 -> PriceAlertFragment()
+                3 -> TransactionFragment()
                 else -> RecycleActivity()
             }
         }
 
         override fun getItemCount(): Int {
-            return 3
+            return 4
         }
     }
 }

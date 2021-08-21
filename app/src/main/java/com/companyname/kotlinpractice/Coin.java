@@ -21,7 +21,7 @@ public class Coin implements Serializable {
     @SerializedName("symbol")
     private String symbol;
     @SerializedName("price")
-    private double price;
+    public double price;
     @SerializedName("priceChange1d")
     private double priceChange1d;
 

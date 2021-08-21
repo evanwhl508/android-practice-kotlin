@@ -10,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 
 import com.companyname.kotlinpractice.databinding.FragmentPriceAlertBinding
+import com.companyname.kotlinpractice.ext.asObservable
 import com.companyname.kotlinpractice.firestore.FirestoreManager
 import java.util.*
 
@@ -40,8 +41,8 @@ class PriceAlertRecyclerViewAdapter(var context: Context?) : RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        Log.e("item.coinId", "onBindViewHolder: $item.coinId", )
-        Log.e("item.price", "onBindViewHolder: $item.price", )
+//        Log.e("item.coinId", "onBindViewHolder: $item.coinId", )
+//        Log.e("item.price", "onBindViewHolder: $item.price", )
         holder.idView.text = item.coinId
         holder.contentView.text = item.price
         holder.btnView.setOnClickListener{
@@ -50,12 +51,13 @@ class PriceAlertRecyclerViewAdapter(var context: Context?) : RecyclerView.Adapte
                 val uid = pref?.getString("user", null)
                 uid?.let {
                     FirestoreManager.instance.db
-                        .collection("price_alert")
-                        .document("$uid")
-                        .collection("coins")
-                        .document(item.coinId)
+//                        .collection("price_alert")
+                        .document("price_alert/$uid/coins/${item.coinId}")
+//                        .collection("coins")
+//                        .document(item.coinId)
                         .delete()
-                        .addOnSuccessListener {
+                        .asObservable { true }
+                        .doOnNext{
                             Log.e(
                                 "clear button",
                                 "DocumentSnapshot successfully deleted ${item.coinId}!"
@@ -63,12 +65,20 @@ class PriceAlertRecyclerViewAdapter(var context: Context?) : RecyclerView.Adapte
                             this.values.removeAt(position)
                             this.notifyItemRemoved(position)
                         }
-                        .addOnFailureListener { e ->
-                            Log.e(
-                                "clear button",
-                                "Error deleting document"
-                            )
-                        }
+//                        .addOnSuccessListener {
+//                            Log.e(
+//                                "clear button",
+//                                "DocumentSnapshot successfully deleted ${item.coinId}!"
+//                            )
+//                            this.values.removeAt(position)
+//                            this.notifyItemRemoved(position)
+//                        }
+//                        .addOnFailureListener { e ->
+//                            Log.e(
+//                                "clear button",
+//                                "Error deleting document"
+//                            )
+//                        }
                 }
             }
         }

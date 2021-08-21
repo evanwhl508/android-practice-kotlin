@@ -14,10 +14,9 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.companyname.kotlinpractice.databinding.ActivityRecycleBinding
 import com.companyname.kotlinpractice.room.RoomManager
-import disposedBy
+import com.companyname.kotlinpractice.ext.disposedBy
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import java.util.*
 import java.util.concurrent.TimeUnit

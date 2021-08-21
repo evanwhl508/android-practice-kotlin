@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:nestedScrollingEnabled="false"
-            tools:listitem="@layout/layout_list_item"
+            tools:listitem="@layout/layout_balance_list"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_deposit"
             app:layout_constraintBottom_toBottomOf="parent"/>

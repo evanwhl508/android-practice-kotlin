@@ -3,24 +3,26 @@ package com.companyname.kotlinpractice
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.companyname.kotlinpractice.databinding.LayoutBalanceListBinding
 import com.companyname.kotlinpractice.databinding.LayoutListItemBinding
+import com.companyname.kotlinpractice.entity.UserSpotBalance
 
-class PersonalInfoRVAdapter(coinList: List<Coin>):
+class PersonalInfoRVAdapter(coinList: List<UserSpotBalance>):
     RecyclerView.Adapter<PersonalInfoRVAdapter.ViewHolder>() {
 
-    fun setCoins(coinList: List<Coin>) {
+    fun setCoins(coinList: List<UserSpotBalance>) {
         coins = coinList
         notifyDataSetChanged()
     }
 
     companion object {
-        var coins: List<Coin> = emptyList()
+        var coins: List<UserSpotBalance> = emptyList()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding: LayoutListItemBinding =
-            LayoutListItemBinding.inflate(layoutInflater, parent, false)
+        val binding: LayoutBalanceListBinding =
+            LayoutBalanceListBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
 
@@ -32,16 +34,12 @@ class PersonalInfoRVAdapter(coinList: List<Coin>):
         coins.let { return coins.size }
     }
 
-    class ViewHolder(binding: LayoutListItemBinding) : RecyclerView.ViewHolder(binding.getRoot()) {
-        var binding: LayoutListItemBinding
-        private var coin: Coin? = null
-        fun bind(c: Coin?) {
-            binding.coinEntity = c
+    class ViewHolder(var binding: LayoutBalanceListBinding) : RecyclerView.ViewHolder(binding.getRoot()) {
+        private var coin: UserSpotBalance? = null
+        fun bind(c: UserSpotBalance?) {
+            binding.item = c
             this.coin = c
         }
 
-        init {
-            this.binding = binding
-        }
     }
 }

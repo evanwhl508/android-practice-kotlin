@@ -3,6 +3,7 @@ package com.companyname.kotlinpractice
 import android.app.Application
 import com.companyname.kotlinpractice.realm.RealmManager
 import com.companyname.kotlinpractice.room.RoomManager
+import com.google.firebase.FirebaseApp
 import io.realm.Realm
 import com.onesignal.OneSignal
 

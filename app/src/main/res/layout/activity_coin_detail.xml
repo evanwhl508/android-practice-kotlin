@@ -30,12 +30,28 @@
             android:textSize="36sp"
             android:text="BTC"
             />
+        <Button
+            android:id="@+id/btn_buy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buy"
+            app:layout_constraintTop_toBottomOf="@+id/iv_icon"
+            app:layout_constraintStart_toStartOf="@+id/iv_icon"
+            />
+        <Button
+            android:id="@+id/btn_sell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sell"
+            app:layout_constraintTop_toTopOf="@+id/btn_buy"
+            app:layout_constraintStart_toEndOf="@+id/iv_icon"
+            />
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/pager2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_icon"
+            app:layout_constraintTop_toBottomOf="@id/btn_buy"
             app:layout_constraintBottom_toTopOf="@+id/layout_tabs"
             />
 

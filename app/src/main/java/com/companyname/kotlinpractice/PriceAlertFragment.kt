@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.companyname.kotlinpractice.firestore.FirestoreManager
+import com.google.gson.Gson
 
 /**
  * A fragment representing a list of Items.
@@ -35,31 +36,26 @@ class PriceAlertFragment : Fragment() {
         val uid = pref?.getString("user", null)
         uid?.let {
             FirestoreManager.instance.db
-                .collection("price_alert")
-                .document("$uid")
-                .collection("coins")
+                .collection("price_alert/$uid/coins")
                 .addSnapshotListener { value, error ->
                     error?.let {
                         Log.e("1111", it.toString())
                     } ?: run {
                         val priceAlertList = arrayListOf<PriceAlert>()
-                        value?.let {
-                            it.documents.forEach { doc ->
-                                Log.e("price alert", "" + doc.data?.get("higher"))
-                                Log.e("price alert", "" + doc.data?.get("name"))
-                                if (doc.data?.get("id") != null && doc.data?.get("higher") != null) {
-                                    val pa = PriceAlert(
-                                        coinId = doc.data?.get("id") as String,
-                                        price = doc.data?.get("higher") as String
-                                    )
-                                    priceAlertList.add(pa)
-                                    rvAdapter.setItems(priceAlertList)
-//                                rvAdapter.notifyDataSetChanged()
-                                }
+                        value?.documents?.mapNotNull { it.data }?.forEach { data ->
+                            Log.e("doc data", "onCreateView: $data", )
+//                            val pa = PriceAlert(
+//                                coinId = data["id"] as String,
+//                                price = data["higher"] as String
+//                            )
+                            val pa = Gson().fromJson(data.toString(),PriceAlert::class.java)
+                            Log.e("GSON", "$pa", )
+                            priceAlertList.add(pa)
+                            rvAdapter.setItems(priceAlertList)
+                            //                                rvAdapter.notifyDataSetChanged()
                             }
                         }
                     }
-                }
         }
         return view
     }
