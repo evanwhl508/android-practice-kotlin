@@ -13,14 +13,16 @@ fun Disposable.disposedBy(disposeBag: CompositeDisposable) {
 fun <T, RT> Task<RT>.asObservable(onSuccess: (res: RT) -> T): Observable<T> {
     return Observable.create {
         this.addOnSuccessListener { result ->
-                it.onNext(onSuccess(result))
+            it.onNext(onSuccess(result))
                 it.onComplete()
             }
             .addOnFailureListener { e ->
+                Log.e("asObservable", "error: $e")
                 it.onError(e)
                 it.onComplete()
             }
             .addOnCompleteListener{ _ ->
+//                Log.e("asObservable", "Complete")
                 it.onComplete()
             }
     }

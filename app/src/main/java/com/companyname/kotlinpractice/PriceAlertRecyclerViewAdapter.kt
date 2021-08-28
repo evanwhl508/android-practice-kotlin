@@ -22,7 +22,7 @@ class PriceAlertRecyclerViewAdapter(var context: Context?) : RecyclerView.Adapte
     private var values: ArrayList<PriceAlert> = arrayListOf()
 
     fun setItems(v: ArrayList<PriceAlert>) {
-        Log.e("set Item", "setItems: $v")
+//        Log.e("set Item", "setItems: $v")
         values = v
         notifyDataSetChanged()
     }

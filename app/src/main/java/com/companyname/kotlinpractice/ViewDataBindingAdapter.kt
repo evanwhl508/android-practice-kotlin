@@ -50,5 +50,39 @@ class ViewDataBindingAdapter {
                 v.setTextColor(Color.parseColor("#228B22"))
             }
         }
+
+        @BindingAdapter("app:transactionType")
+        @JvmStatic
+        fun setTransactionType(v: TextView, value: String?)
+        {
+            when (value) {
+                "sell" -> {
+                    v.setTextColor(v.context.getColor(R.color.alert_red))
+                }
+                "buy" -> {
+                    v.setTextColor(Color.parseColor("#228B22"))
+                }
+                "deposit" -> {
+                    v.setTextColor(Color.parseColor("#FFDF00"))
+                }
+            }
+        }
+
+        @BindingAdapter("app:priceChangeColor")
+        @JvmStatic
+        fun setPriceChangeColor(v: TextView, value: String?)
+        {
+            when (value) {
+                "-" -> {
+                    v.setTextColor(v.context.getColor(R.color.alert_red))
+                }
+                "+" -> {
+                    v.setTextColor(Color.parseColor("#228B22"))
+                }
+                "" -> {
+                    v.setTextColor(Color.parseColor("#FF424242"))
+                }
+            }
+        }
     }
 }

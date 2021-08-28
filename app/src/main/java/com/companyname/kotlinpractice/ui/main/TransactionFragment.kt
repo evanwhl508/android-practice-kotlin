@@ -1,5 +1,6 @@
 package com.companyname.kotlinpractice.ui.main
 
+import android.app.DownloadManager
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.companyname.kotlinpractice.PriceAlertRecyclerViewAdapter
@@ -18,6 +20,7 @@ import com.companyname.kotlinpractice.entity.UserSpotBalance
 import com.companyname.kotlinpractice.entity.UserTransaction
 import com.companyname.kotlinpractice.firestore.FirestoreManager
 import com.companyname.kotlinpractice.ui.main.placeholder.PlaceholderContent
+import com.google.firebase.firestore.Query
 import com.google.gson.Gson
 
 /**
@@ -43,6 +46,7 @@ class TransactionFragment : Fragment() {
         val username = "test"
         FirestoreManager.instance.db
             .collection("users/$username/transaction")
+            .orderBy("timestamp", Query.Direction.DESCENDING)
             .addSnapshotListener { value, error ->
                 error?.let {
                     Log.e("1111", it.toString())

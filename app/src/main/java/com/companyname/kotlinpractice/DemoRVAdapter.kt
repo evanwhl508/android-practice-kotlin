@@ -61,7 +61,6 @@ class DemoRVAdapter : RecyclerView.Adapter<DemoRVAdapter.ViewHolder>() {
                 val c = RoomFavCoin().apply {
                     coinId = coin.id
                 }
-//                c.coinId=this.coin.getId();
                 RoomManager.instance.db.favCoinDao()?.let{
                     if (this.binding.checkBoxFav.isChecked) {
                         it.insertFavCoin(c).subscribeOn(AndroidSchedulers.mainThread()).subscribe{
@@ -77,19 +76,7 @@ class DemoRVAdapter : RecyclerView.Adapter<DemoRVAdapter.ViewHolder>() {
                     }
             }
             this.binding.checkBoxAlert.setOnClickListener{
-//                val pref = binding.root.context.getSharedPreferences("firebase", Context.MODE_PRIVATE)
-//                val uid = pref.getString("user", null)
-//                uid?.let {
-//                    FirestoreManager.instance.db
-//                        .collection("price_alert")
-//                        .document("$uid")
-//                        .collection("coins")
-//                        .document(coin.id)
-//                        .set(HashMap<String, Any>().apply {
-//                            put("higher", 500)
-//                        }, SetOptions.merge())
-//                }
-                Log.e("alert", "clicked!")
+//                Log.e("alert", "clicked!")
                 val builder: AlertDialog.Builder = AlertDialog.Builder(binding.root.context)
                 builder.setTitle("Alert Price")
 // Set up the input
@@ -98,27 +85,28 @@ class DemoRVAdapter : RecyclerView.Adapter<DemoRVAdapter.ViewHolder>() {
                 input.inputType = InputType.TYPE_CLASS_NUMBER
                 builder.setView(input)
 // Set up the buttons
-                builder.setPositiveButton("Confirm",
-                    DialogInterface.OnClickListener { dialog, which ->
-                        Log.e("Confirm Button", coin.id + ": " + input.text.toString())
+                builder.setPositiveButton("Confirm"
+                ) { dialog, which ->
+//                    Log.e("Confirm Button", coin.id + ": " + input.text.toString())
 
-                        val pref = binding.root.context.getSharedPreferences("firebase", Context.MODE_PRIVATE)
-                        val username = pref.getString("user", null)
-                        Log.e("Confirm Button", "$username")
-                        username?.let {
-                            val timestamp = Timestamp(System.currentTimeMillis()).time
-                            FirestoreManager.instance.db
-                                .document("users/$username/price_alert/${coin.id}_$timestamp")
-                                .set(HashMap<String, Any>().apply {
-                                    put("timestamp", timestamp)
-                                    put("direction", "upper")
-                                    put("price", input.text.toString())
-                                    put("id", coin.id)
-                                }, SetOptions.merge())
-                        }
-                    })
-                builder.setNegativeButton("Cancel",
-                    DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+                    val pref =
+                        binding.root.context.getSharedPreferences("firebase", Context.MODE_PRIVATE)
+                    val username = pref.getString("user", null)
+//                    Log.e("Confirm Button", "$username")
+                    username?.let {
+                        val timestamp = Timestamp(System.currentTimeMillis()).time
+                        FirestoreManager.instance.db
+                            .document("users/$username/price_alert/${coin.id}_$timestamp")
+                            .set(HashMap<String, Any>().apply {
+                                put("timestamp", timestamp)
+                                put("direction", "upper")
+                                put("price", input.text.toString())
+                                put("id", coin.id)
+                            }, SetOptions.merge())
+                    }
+                }
+                builder.setNegativeButton("Cancel"
+                ) { dialog, which -> dialog.cancel() }
                 builder.show()
             }
         }

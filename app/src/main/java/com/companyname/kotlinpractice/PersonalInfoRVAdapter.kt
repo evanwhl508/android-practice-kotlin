@@ -34,7 +34,7 @@ class PersonalInfoRVAdapter(coinList: List<UserSpotBalance>):
         coins.let { return coins.size }
     }
 
-    class ViewHolder(var binding: LayoutBalanceListBinding) : RecyclerView.ViewHolder(binding.getRoot()) {
+    class ViewHolder(var binding: LayoutBalanceListBinding) : RecyclerView.ViewHolder(binding.root) {
         private var coin: UserSpotBalance? = null
         fun bind(c: UserSpotBalance?) {
             binding.item = c

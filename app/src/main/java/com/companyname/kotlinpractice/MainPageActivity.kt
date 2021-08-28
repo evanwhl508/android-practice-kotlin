@@ -32,7 +32,7 @@ class MainPageActivity : FragmentActivity() {
         TabLayoutMediator(
             tabLayout, viewPager
         ) { tab, position ->
-            Log.e("tab name", "position: $position")
+//            Log.e("tab name", "position: $position")
             when (position) {
                 0 -> tab.text = "Price List"
                 1 -> tab.text = "Personal Info"

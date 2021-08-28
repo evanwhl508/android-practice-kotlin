@@ -17,7 +17,9 @@ import com.companyname.kotlinpractice.databinding.PersonalInfoFragmentBinding
 import com.companyname.kotlinpractice.entity.UserSpotBalance
 import com.companyname.kotlinpractice.firestore.FirestoreManager
 import com.companyname.kotlinpractice.ui.deposit.DepositActivity
+import io.reactivex.rxjava3.core.Observable
 import java.util.ArrayList
+import java.util.concurrent.TimeUnit
 
 class PersonalInfoFragment : Fragment() {
     var coins = ArrayList<UserSpotBalance>()
@@ -42,22 +44,25 @@ class PersonalInfoFragment : Fragment() {
         val rvAdapter = PersonalInfoRVAdapter(coins)
         val username = "test"
         FirestoreManager.instance.db
-                        .document("users/$username/balance/spot")
+                        .collection("users/$username/balance")
                         .addSnapshotListener { value, error ->
                             error?.let {
-                                Log.e("1111", it.toString())
+//                                Log.e("1111", it.toString())
                             } ?: run {
                                 val bList = arrayListOf<UserSpotBalance>()
-                                value?.data?.forEach {
-                                    Log.e("balance data", "onCreateView: ${it.key} & ${it.value}", )
-                                    var itemValue = it.value
-                                    if (itemValue is Long) {
-                                        itemValue = itemValue.toDouble()
-                                    }
-                                    val b = UserSpotBalance(
-                                        symbol = it.key,
-                                        amount = itemValue as Double
-                                    )
+                                value?.documents?.mapNotNull { it.data }?.forEach { data ->
+                            //                                    Log.e("balance data", "onCreateView: ${it.key} & ${it.value}", )
+                                                                var itemValue = data["amount"]
+                                                                if (itemValue is Long) {
+                                                                    itemValue = itemValue.toDouble()
+                                                                }
+                                    Log.e("deposit", "data: $data", )
+//                                    val b = Gson().fromJson(data.toString(),UserSpotBalance::class.java)
+                                                                val b = UserSpotBalance(
+                                                                    symbol = data["symbol"] as String,
+                                                                    url = data["imgUrl"] as String,
+                                                                    amount = itemValue as Double,
+                                                                )
                                     bList.add(b)
                                 }
                                 rvAdapter.setCoins(bList)
@@ -65,20 +70,29 @@ class PersonalInfoFragment : Fragment() {
                                 viewModel.getCoins("USD").subscribe()
                             }
                         }
+        val obsTimer: Observable<Long> = Observable.interval(0, 300, TimeUnit.SECONDS)
+
+        obsTimer.flatMap { viewModel.getCoins("USD") }.subscribe()
+
         viewModel.ldCoin.observe(viewLifecycleOwner, {coins ->
-            Log.e("update balance", "onCreateView: ", )
+//            Log.e("update balance", "onCreateView: ", )
             var totalBalance = 0.0F
             coins.forEach{ coin ->
                 balanceList.forEach {
-                    Log.e("update balance", "${coin.symbol} + ${it.symbol}" )
+                    Log.e("update balance", "${coin.id} + ${it.symbol}" )
                     if (coin.id == it.symbol) {
                         totalBalance += it.amount.toFloat() * coin.price.toFloat()
+                        it.lastPrice = it.currentPrice
+                        it.currentPrice = coin.price
                     }
                 }
+//                viewModel.coinBalanceList.postValue(balanceList)
+                rvAdapter.setCoins(balanceList)
             }
             pref?.edit()?.putFloat("total_balance", totalBalance)?.apply()
 //            rvAdapter.setCoins(it)
         })
+
         viewModel.checkBox.observe(viewLifecycleOwner, {
                 if (it) {
                     val totalBalance = pref?.getFloat("total_balance", 0.0F)

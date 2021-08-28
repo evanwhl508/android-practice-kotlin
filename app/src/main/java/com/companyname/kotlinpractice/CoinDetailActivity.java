@@ -84,7 +84,7 @@ public class CoinDetailActivity extends FragmentActivity {
 
         SharedPreferences pref = getSharedPreferences("firebase", Context.MODE_PRIVATE);
         String username = pref.getString("user", "error");
-        Log.e("username", "onCreate: " + username );
+//        Log.e("username", "onCreate: " + username );
 
         binding.btnBuy.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -109,7 +109,8 @@ public class CoinDetailActivity extends FragmentActivity {
                         data.put("pair", coin.getId());
                         data.put("amount", Float.parseFloat(amount));
                         data.put("price", Float.parseFloat(coin.getFormattedPrice()));
-                        Log.e("data", "onClick: " + data.toString());
+                        data.put("imgUrl", coin.getIcon());
+//                        Log.e("data", "onClick: " + data.toString());
                         FirebaseFunctions.getInstance() // Optional region: .getInstance("europe-west1")
                                 .getHttpsCallable("buyCoin")
                                 .call(data)
@@ -163,7 +164,7 @@ public class CoinDetailActivity extends FragmentActivity {
                         data.put("pair", coin.getId());
                         data.put("amount", Float.parseFloat(amount));
                         data.put("price", Float.parseFloat(coin.getFormattedPrice()));
-                        Log.e("data", "onClick: " + data.toString());
+//                        Log.e("data", "onClick: " + data.toString());
                         FirebaseFunctions.getInstance() // Optional region: .getInstance("europe-west1")
                                 .getHttpsCallable("sellCoin")
                                 .call(data)
@@ -198,7 +199,7 @@ public class CoinDetailActivity extends FragmentActivity {
         new TabLayoutMediator(tabLayout, viewPager2,
                 new TabLayoutMediator.TabConfigurationStrategy() {
                     @Override public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                        Log.e("tab name", "position: " + position);
+//                        Log.e("tab name", "position: " + position);
                         switch (position) {
                             case 0:
                                 tab.setText("Info");

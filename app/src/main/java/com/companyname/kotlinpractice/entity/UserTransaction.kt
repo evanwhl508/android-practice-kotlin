@@ -2,7 +2,8 @@ package com.companyname.kotlinpractice.entity;
 
 import android.util.Log
 import com.google.gson.annotations.SerializedName
-import java.io.Serializable
+import java.text.SimpleDateFormat
+import java.util.*
 
 data class UserTransaction(
     @SerializedName("symbol") val symbol: String,
@@ -20,5 +21,12 @@ data class UserTransaction(
     }
     fun getFormattedPrice(): String {
         return price.toString()
+    }
+
+    fun getDateTime(): String {
+        val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm:ss")
+        val netDate = Date(timestamp)
+        return sdf.format(netDate)
+//        return Date(timestamp).toString()
     }
 }

@@ -1,11 +1,10 @@
 package com.companyname.kotlinpractice.firestore
 
-import android.R.attr
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
-import com.companyname.kotlinpractice.PriceAlert
 import com.companyname.kotlinpractice.ext.asObservable
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.ktx.Firebase
@@ -23,8 +22,22 @@ class FirestoreManager private constructor() {
     init {
     }
 
+    fun getSpotBalance(username: String) : Observable<List<DocumentSnapshot>?> {
+        return instance.db
+                .collection("users/$username/balance")
+                .get()
+                .asObservable { documentSnapshot ->
+                    documentSnapshot?.documents?.let { data ->
+                        Log.e("Firestore", "error: $data")
+                        data
+                    }
+                }.doOnError { e ->
+                Log.e("Firestore", "error: $e")
+            }
+    }
+
     fun deleteFavCoin(context:Context, coinId: String) {
-        val pref = context!!.getSharedPreferences("firebase", Context.MODE_PRIVATE)
+        val pref = context.getSharedPreferences("firebase", Context.MODE_PRIVATE)
         val uid = pref?.getString("user", null)
             uid?.let { id ->
                 instance.db

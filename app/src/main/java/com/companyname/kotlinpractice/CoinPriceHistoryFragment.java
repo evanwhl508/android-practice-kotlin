@@ -103,10 +103,10 @@ public class CoinPriceHistoryFragment extends Fragment {
 
     private void getCoinPriceHistory(Context context, CoinPriceHistoryRecyclerViewAdapter rv_adapter) {
         Activity view = (Activity) context;
-        Log.e("get Coins", "coin: " + coin.toString());
+//        Log.e("get Coins", "coin: " + coin.toString());
         Disposable d = CoinRepo.getCoinPriceHistory(coin.getId())
                 .subscribe(coinPriceHistory1 -> {
-                    Log.e("get Coins", "getData: " + coinPriceHistory1.toString());
+//                    Log.e("get Coins", "getData: " + coinPriceHistory1.toString());
                     coinPriceHistory = coinPriceHistory1;
                     rv_adapter.setmValues(coinPriceHistory1);
                     initDataSet();

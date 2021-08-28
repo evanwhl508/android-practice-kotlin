@@ -2,6 +2,7 @@ package com.companyname.kotlinpractice
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.companyname.kotlinpractice.entity.UserSpotBalance
 import io.reactivex.rxjava3.core.Observable
 import java.util.*
 import kotlin.collections.ArrayList

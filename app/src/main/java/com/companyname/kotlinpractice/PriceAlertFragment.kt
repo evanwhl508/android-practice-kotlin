@@ -39,13 +39,13 @@ class PriceAlertFragment : Fragment() {
                 .collection("users/$uid/price_alert")
                 .addSnapshotListener { value, error ->
                     error?.let {
-                        Log.e("1111", it.toString())
+//                        Log.e("1111", it.toString())
                     } ?: run {
                         val priceAlertList = arrayListOf<PriceAlert>()
                         value?.documents?.mapNotNull { it.data }?.forEach { data ->
-                            Log.e("doc data", "onCreateView: $data", )
+//                            Log.e("doc data", "onCreateView: $data", )
                             val pa = Gson().fromJson(data.toString(),PriceAlert::class.java)
-                            Log.e("GSON", "$pa", )
+//                            Log.e("GSON", "$pa", )
                             priceAlertList.add(pa)
                             rvAdapter.setItems(priceAlertList)
                             }

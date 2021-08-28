@@ -57,7 +57,7 @@ public class CoinListViewModel extends ViewModel {
                         .collect(Collectors.toList());
             }
             filteredCoin.postValue(new ArrayList<Coin>(filtered_list));
-            Log.e("VM", "filterCoins: " + filtered_list.toString());
+//            Log.e("VM", "filterCoins: " + filtered_list.toString());
         }
     }
 }

@@ -91,10 +91,10 @@ public class CoinMarketInfoFragment extends Fragment {
 
     private void getCoinMarketInfo(Context context, CoinMarketInfoRVAdapter rv_adapter) {
         Activity view = (Activity) context;
-        Log.e("get Coins", "coin: " + coin.toString());
+//        Log.e("get Coins", "coin: " + coin.toString());
         Disposable d = CoinRepo.getCoinMarket(coin.getId())
                 .subscribe(markets1 -> {
-                    Log.e("get Coins", "getData: " + markets1.toString());
+//                    Log.e("get Coins", "getData: " + markets1.toString());
                     market = markets1;
                     rv_adapter.setMarket(markets1);
                 });
